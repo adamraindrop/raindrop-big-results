@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raindrop — Ridiculous business results through big ideas</title>
+<meta name="description" content="The independent agency behind some of CPG's biggest outcomes. P&amp;G's biggest launch in history. A $1.2B exit. 100x revenue in four years.">
+<style>
+/* ============================================================
+   RAINDROP · "Big Results" Landing Page
+   Built on SEMANTIC TOKEN ROLES (design-brief §3) so the
+   Raindrop design system drops in cleanly. Interim values
+   mapped to the real Raindrop brand (indigo / electric /
+   gold highlight) + brand faces (Freight Display, Santral,
+   Owners XNarrow).
+   ============================================================ */
+
+/* ---- BRAND FACES (self-hosted) ---- */
+@font-face{font-family:"Santral";src:url("fonts/santral-extralight-webfont.woff2") format("woff2");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Santral";src:url("fonts/santral-regular-webfont.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Santral";src:url("fonts/santral-bold-webfont.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"Freight Display Pro";src:url("fonts/freight-display-pro-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Freight Display Pro";src:url("fonts/freight-display-pro-400italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Freight Display Pro";src:url("fonts/freight-display-pro-700.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Freight Display Pro";src:url("fonts/freight-display-pro-900.woff2") format("woff2");font-weight:900;font-style:normal;font-display:swap}
+@font-face{font-family:"Owners XNarrow";src:url("fonts/owners-xnarrow-800.woff2") format("woff2");font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:"Owners XNarrow";src:url("fonts/owners-xnarrow-900.woff2") format("woff2");font-weight:900;font-style:normal;font-display:swap}
+
+/* ====================  TOKEN ROLES  ==================== */
+:root{
+  /* surfaces */
+  --bg:#ffffff;            /* default sections */
+  --bg-alt:#f5f5f1;        /* alternating (warm cream) */
+  --bg-dark:#0a1377;       /* hero, proof wall, manifesto, final CTA */
+  --bg-dark-2:#070d52;     /* deeper indigo for layering on dark */
+
+  /* ink */
+  --ink:#15171d;           /* headlines, body on light */
+  --ink-muted:#52627a;     /* supporting copy */
+  --ink-on-dark:#e7edf6;   /* body on dark */
+  --ink-on-dark-dim:rgba(231,237,246,.62);
+
+  /* brand accents */
+  --accent:#1a27c4;        /* electric blue — links, numerals, accents */
+  --accent-dk:#0a1377;
+  --cta:#1a27c4;           /* primary buttons */
+  --cta-hover:#0a1377;     /* darken ~ on hover */
+  --highlight:#ffc838;     /* SPARING: key numbers, underlines, kicker tint */
+  --check:#1f9d6b;         /* checklist marks */
+  --teal:#049fb4;          /* eyebrow accent */
+
+  /* lines */
+  --line:rgba(21,23,29,.12);
+  --line-strong:rgba(21,23,29,.22);
+  --line-on-dark:rgba(255,255,255,.16);
+
+  /* type roles */
+  --font-display:"Freight Display Pro",Georgia,"Times New Roman",serif;
+  --font-text:"Santral","Helvetica Neue",Arial,sans-serif;
+  --font-serif:"Freight Display Pro",Georgia,serif; /* italic kicker */
+  --font-condensed:"Owners XNarrow","Arial Narrow",sans-serif;
+
+  /* radii */
+  --r-sm:6px; --r-md:12px; --r-lg:20px; --r-pill:999px;
+
+  /* elevation (soft, blue-tinted) */
+  --shadow-sm:0 1px 2px rgba(10,19,119,.06),0 2px 6px rgba(10,19,119,.07);
+  --shadow-md:0 10px 28px rgba(10,19,119,.12);
+  --shadow-lg:0 26px 64px rgba(10,19,119,.20);
+
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --dur:240ms;
+  --maxw:1208px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font-text);font-weight:400;color:var(--ink);
+  background:var(--bg);line-height:1.62;font-size:19px;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+::selection{background:var(--highlight);color:var(--ink);}
+
+/* ---- shared layout ---- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+.section{padding:clamp(64px,9vw,128px) 0;position:relative;}
+.section.tight{padding:clamp(48px,6vw,84px) 0;}
+.dark{background:var(--bg-dark);color:var(--ink-on-dark);}
+.alt{background:var(--bg-alt);}
+.center{text-align:center;}
+.measure{max-width:842px;margin-left:auto;margin-right:auto;}
+
+/* ---- type roles ---- */
+.eyebrow{
+  font-family:var(--font-text);font-weight:600;text-transform:uppercase;
+  letter-spacing:.2em;font-size:14px;line-height:1.5;color:var(--accent);
+}
+.dark .eyebrow{color:var(--teal);}
+.display{
+  font-family:var(--font-display);font-weight:900;line-height:.96;
+  letter-spacing:-.018em;color:var(--ink);text-wrap:balance;
+  font-size:clamp(34px,5vw,64px);
+}
+.dark .display{color:#fff;}
+.display .ital{font-style:italic;font-weight:400;letter-spacing:-.01em;}
+.dark .display .ital{color:var(--highlight);}
+.display.lg{font-size:clamp(40px,6.4vw,82px);line-height:.92;}
+.kicker{ /* serif-italic line, highlight-tinted on dark */
+  font-family:var(--font-serif);font-style:italic;font-weight:400;
+  color:var(--accent);
+}
+.dark .kicker{color:var(--highlight);}
+.lede{font-size:clamp(20px,2.1vw,24px);line-height:1.6;color:var(--ink-muted);}
+.dark .lede{color:var(--ink-on-dark);}
+.sec-label{
+  font-family:var(--font-condensed);font-weight:800;text-transform:uppercase;
+  letter-spacing:.06em;font-size:15px;color:var(--accent);
+}
+
+/* gold marker underline on a phrase */
+.underline-hl{
+  background-image:linear-gradient(var(--highlight),var(--highlight));
+  background-repeat:no-repeat;background-position:0 88%;
+  background-size:100% .34em;padding:0 .04em;
+}
+
+/* ====================  BUTTONS  ==================== */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;cursor:pointer;border:none;
+  font-family:var(--font-text);font-weight:600;font-size:17px;letter-spacing:.01em;
+  background:var(--cta);color:#fff;border-radius:var(--r-pill);
+  padding:16px 32px;transition:background var(--dur) var(--ease),transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease);
+  box-shadow:var(--shadow-sm);
+}
+.btn .arr{transition:transform var(--dur) var(--ease);}
+.btn:hover{background:var(--cta-hover);box-shadow:var(--shadow-md);}
+.btn:hover .arr{transform:translateX(4px);}
+.btn:active{transform:scale(.985);}
+.btn.lg{font-size:18px;padding:18px 38px;}
+.btn.white{background:#fff;color:var(--accent-dk);}
+.btn.white:hover{background:#eef1ff;}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line-strong);box-shadow:none;}
+.dark .btn.ghost{color:#fff;border-color:var(--line-on-dark);}
+
+/* text link CTA */
+.link-cta{
+  font-family:var(--font-text);font-weight:600;color:var(--accent);
+  display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+}
+.link-cta .arr{transition:transform var(--dur) var(--ease);}
+.link-cta:hover{text-decoration:underline;}
+.link-cta:hover .arr{transform:translateX(3px);}
+.dark .link-cta{color:var(--highlight);}
+
+/* microtrust row */
+.microtrust{
+  display:flex;flex-wrap:wrap;gap:8px 0;align-items:center;
+  font-size:15.5px;color:var(--ink-on-dark-dim);font-weight:400;
+}
+.microtrust span{display:inline-flex;align-items:center;}
+.microtrust span:not(:last-child)::after{content:"·";margin:0 12px;opacity:.6;}
+.light-trust{color:var(--ink-muted);}
+
+/* proof chips */
+.chips{display:flex;flex-wrap:wrap;gap:10px;}
+.chip{
+  font-family:var(--font-text);font-weight:500;font-size:15px;
+  border:1px solid var(--line-on-dark);border-radius:var(--r-pill);
+  padding:8px 16px;color:var(--ink-on-dark);background:rgba(255,255,255,.04);
+  white-space:nowrap;
+}
+.chip b{font-weight:600;color:#fff;}
+
+/* ====================  1 · ANNOUNCEMENT BAR  ==================== */
+.announce{
+  position:sticky;top:0;z-index:60;background:var(--bg-dark-2);color:#fff;
+  border-bottom:1px solid var(--line-on-dark);
+}
+.announce .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:46px;}
+.announce .left{display:flex;align-items:center;gap:14px;min-width:0;}
+.announce .rlogo{height:18px;flex:none;}
+.announce .msg{font-size:13.5px;color:rgba(255,255,255,.82);font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.announce .talk{font-size:13.5px;font-weight:600;color:var(--highlight);white-space:nowrap;display:inline-flex;align-items:center;gap:6px;cursor:pointer;}
+.announce .talk:hover{text-decoration:underline;}
+
+/* ====================  2 · HERO  ==================== */
+.hero{background:var(--bg-dark);color:#fff;position:relative;overflow:hidden;}
+.hero .blob{position:absolute;pointer-events:none;filter:brightness(0) invert(1);opacity:.06;}
+.hero-inner{position:relative;z-index:2;padding:clamp(52px,7vw,96px) 0 clamp(40px,5vw,64px);}
+.hero h1{margin:20px 0 0;}
+.hero .kickline{display:block;margin-top:.16em;font-size:clamp(30px,4.6vw,60px);line-height:1;}
+.hero .sub{max-width:600px;margin:28px 0 0;font-size:clamp(18px,1.7vw,21px);line-height:1.6;color:var(--ink-on-dark);}
+.hero .cta-row{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin:34px 0 18px;}
+.hero .microtrust{margin-top:6px;}
+.hero .chips{margin-top:30px;}
+
+/* hero client strip */
+.logostrip{border-top:1px solid var(--line-on-dark);background:var(--bg-dark);overflow:hidden;}
+.logostrip .label{font-family:var(--font-text);font-weight:600;text-transform:uppercase;letter-spacing:.2em;font-size:11.5px;color:var(--ink-on-dark-dim);text-align:center;padding-top:26px;}
+.marquee{display:flex;width:max-content;align-items:center;gap:clamp(40px,6vw,72px);padding:22px 0 30px;animation:marquee 36s linear infinite;}
+.marquee img{height:24px;filter:brightness(0) invert(1);opacity:.66;flex:none;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.logostrip:hover .marquee{animation-play-state:paused;}
+
+/* ====================  3 · VIDEO  ==================== */
+.video-frame{
+  position:relative;aspect-ratio:16/9;border-radius:var(--r-lg);overflow:hidden;
+  box-shadow:var(--shadow-lg);background:#000;max-width:920px;margin:0 auto;cursor:pointer;
+}
+.video-frame img{width:100%;height:100%;object-fit:cover;}
+.video-frame .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,19,119,.12),rgba(10,19,119,.42));display:grid;place-items:center;}
+.play{
+  width:88px;height:88px;border-radius:var(--r-pill);background:rgba(255,255,255,.95);
+  display:grid;place-items:center;color:var(--accent-dk);box-shadow:var(--shadow-md);
+  transition:transform var(--dur) var(--ease);
+}
+.video-frame:hover .play{transform:scale(1.06);}
+.play svg{margin-left:5px;}
+.video-cap{position:absolute;left:22px;bottom:18px;color:#fff;font-family:var(--font-text);font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;}
+
+/* ====================  4 · REALITY  ==================== */
+.reality p{font-size:clamp(20px,1.9vw,24px);line-height:1.6;color:var(--ink-muted);}
+.reality p + p{margin-top:22px;}
+.reality .display{margin-bottom:32px;}
+
+/* ====================  5 · ARGUMENT CARDS  ==================== */
+.argrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+.num-card{
+  background:var(--bg);border:1px solid var(--line);border-radius:var(--r-lg);
+  overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);
+  transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease);
+}
+.num-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
+.num-card .thumb{aspect-ratio:16/10;overflow:hidden;background:var(--bg-alt);}
+.num-card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease);}
+.num-card:hover .thumb img{transform:scale(1.04);}
+.num-card .body{padding:26px 26px 28px;flex:1;display:flex;flex-direction:column;}
+.num-card .num{font-family:var(--font-condensed);font-weight:900;font-size:54px;line-height:.8;color:var(--accent);letter-spacing:.01em;}
+.num-card h3{font-family:var(--font-display);font-weight:700;font-size:23px;line-height:1.12;letter-spacing:-.01em;margin:14px 0 12px;color:var(--ink);}
+.num-card p{font-size:17.5px;line-height:1.55;color:var(--ink-muted);}
+.num-card .more{margin-top:auto;padding-top:20px;}
+.arg-banner{
+  margin-top:44px;text-align:center;font-family:var(--font-display);font-weight:700;
+  font-size:clamp(24px,3.2vw,38px);line-height:1.15;letter-spacing:-.01em;color:var(--ink);
+}
+
+/* ====================  6 · PROOF WALL  ==================== */
+.statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:48px;}
+.stat{
+  border:1px solid var(--line-on-dark);border-radius:var(--r-md);
+  padding:26px 22px;background:rgba(255,255,255,.025);
+}
+.stat .n{font-family:var(--font-condensed);font-weight:900;font-size:clamp(40px,3.6vw,52px);line-height:.9;color:var(--highlight);letter-spacing:.005em;}
+.stat .d{font-size:15.5px;line-height:1.4;color:var(--ink-on-dark-dim);margin-top:12px;}
+.candor{max-width:860px;margin:48px auto 0;text-align:center;font-size:19px;line-height:1.6;color:var(--ink-on-dark);}
+.candor .ital{font-style:italic;font-family:var(--font-serif);color:#fff;}
+.proof-cta{text-align:center;margin-top:38px;}
+
+/* ====================  7 · PATTERN TILES  ==================== */
+.beat-list{margin-top:48px;display:flex;flex-direction:column;gap:20px;}
+.beat-tile{
+  display:grid;grid-template-columns:300px 1fr;gap:0;background:var(--bg);
+  border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-sm);
+}
+.beat-tile .pic{overflow:hidden;background:var(--bg-alt);min-height:220px;}
+.beat-tile .pic img{width:100%;height:100%;object-fit:cover;}
+.beat-tile .pic.placeholder{display:grid;place-items:center;background:linear-gradient(135deg,#0a1377,#1a27c4);}
+.beat-tile .pic.placeholder .ph-mark{height:62px;opacity:.9;filter:brightness(0) invert(1);}
+.beat-tile .beat-body{padding:30px 34px;display:flex;flex-direction:column;justify-content:center;gap:18px;}
+.beat{display:block;}
+.beat .lab{font-family:var(--font-condensed);font-weight:800;text-transform:uppercase;letter-spacing:.1em;font-size:14.5px;color:var(--teal);margin-bottom:6px;}
+.beat.followed .lab{color:var(--accent);}
+.beat p{font-size:18.5px;line-height:1.52;color:var(--ink-muted);}
+.beat.followed p{color:var(--ink);font-weight:600;}
+.pattern-cta{margin-top:32px;}
+
+/* ====================  8 · OPERATORS  ==================== */
+.ops-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,5vw,64px);align-items:center;}
+.ops-portrait{position:relative;}
+.ops-portrait .ops-photo{display:block;width:100%;height:clamp(440px,54vw,560px);object-fit:cover;object-position:50% 22%;border-radius:var(--r-lg);box-shadow:var(--shadow-md);}
+.ops-badge{
+  position:absolute;left:-14px;bottom:-14px;background:var(--bg-dark);color:#fff;
+  border-radius:var(--r-md);padding:14px 18px;box-shadow:var(--shadow-md);max-width:200px;
+}
+.ops-badge .bn{font-family:var(--font-condensed);font-weight:900;font-size:22px;color:var(--highlight);line-height:1;}
+.ops-badge .bd{font-size:12px;color:var(--ink-on-dark-dim);margin-top:6px;line-height:1.35;}
+.ops-copy p{font-size:20px;line-height:1.6;color:var(--ink-muted);}
+.ops-copy p + p{margin-top:18px;}
+.pullquote{
+  margin-top:28px;border-left:4px solid var(--highlight);padding:6px 0 6px 24px;
+}
+.pullquote q{font-family:var(--font-serif);font-style:italic;font-weight:400;font-size:clamp(20px,2.3vw,26px);line-height:1.35;color:var(--ink);quotes:none;}
+.pullquote .attr{display:block;margin-top:14px;font-family:var(--font-text);font-weight:600;font-size:15px;font-style:normal;color:var(--ink-muted);}
+.award-strip{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
+.award{font-family:var(--font-condensed);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:13px;color:var(--ink-muted);border:1px solid var(--line-strong);border-radius:var(--r-pill);padding:7px 16px;}
+
+/* ====================  9 · CEO MEASURE  ==================== */
+.checklist{list-style:none;margin:32px 0 0;display:flex;flex-direction:column;gap:0;}
+.checklist li{display:flex;gap:18px;align-items:flex-start;padding:20px 0;border-bottom:1px solid var(--line);font-size:19.5px;line-height:1.5;}
+.checklist li:first-child{border-top:1px solid var(--line);}
+.checklist .mark{flex:none;width:32px;height:32px;border-radius:var(--r-pill);background:rgba(31,157,107,.12);color:var(--check);display:grid;place-items:center;margin-top:1px;}
+.checklist .mark svg{width:18px;height:18px;}
+.callout{
+  margin-top:40px;background:var(--bg-dark);color:#fff;border-radius:var(--r-lg);
+  padding:clamp(28px,4vw,44px);position:relative;overflow:hidden;box-shadow:var(--shadow-md);
+}
+.callout .blob{position:absolute;right:-30px;top:-30px;width:200px;opacity:.08;filter:brightness(0) invert(1);pointer-events:none;}
+.callout .eyebrow{color:var(--teal);}
+.callout .ct{font-family:var(--font-display);font-weight:700;font-size:clamp(24px,3vw,34px);line-height:1.18;letter-spacing:-.01em;margin-top:14px;position:relative;z-index:2;}
+.callout .ct .ital{font-style:italic;font-weight:400;color:var(--highlight);}
+.callout .vendor-logos{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:22px;position:relative;z-index:2;}
+.callout .vendor-logos span{font-family:var(--font-condensed);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:15px;color:rgba(255,255,255,.8);}
+
+/* ====================  10 · WHO FOR  ==================== */
+.who-list{list-style:none;margin:32px 0 0;display:grid;gap:16px;}
+.who-list li{
+  display:flex;gap:18px;align-items:flex-start;background:var(--bg);border:1px solid var(--line);
+  border-radius:var(--r-md);padding:24px 26px;font-size:19.5px;line-height:1.5;box-shadow:var(--shadow-sm);
+}
+.who-list .mark{flex:none;width:34px;height:34px;border-radius:var(--r-pill);background:rgba(31,157,107,.12);color:var(--check);display:grid;place-items:center;margin-top:1px;}
+.who-list .mark svg{width:19px;height:19px;}
+.notfor{margin-top:26px;padding:18px 22px;border-left:3px solid var(--line-strong);color:var(--ink-muted);font-size:16.5px;line-height:1.55;background:rgba(21,23,29,.025);border-radius:0 var(--r-md) var(--r-md) 0;}
+
+/* ==================== 11 · MANIFESTO  ==================== */
+.manifesto-list{list-style:none;margin:48px 0 0;}
+.manifesto-list li{
+  display:flex;gap:22px;align-items:flex-start;padding:28px 0;border-bottom:1px solid var(--line-on-dark);
+  font-size:clamp(20px,2.1vw,24px);line-height:1.45;color:#fff;font-family:var(--font-display);font-weight:400;
+}
+.manifesto-list li:last-child{border-bottom:none;}
+.manifesto-list .x{flex:none;width:40px;height:40px;border-radius:var(--r-pill);border:1.5px solid var(--highlight);color:var(--highlight);display:grid;place-items:center;margin-top:2px;}
+.manifesto-list .x svg{width:19px;height:19px;}
+.manifesto-list b{font-weight:700;}
+.manifesto-cta{margin-top:48px;}
+
+/* ==================== 12 · CLIENT VOICES  ==================== */
+.voices{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+.voice{
+  background:var(--bg);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:30px 28px;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);
+}
+.voice .mark-q{font-family:var(--font-display);font-weight:900;font-size:60px;line-height:.6;color:var(--highlight);height:34px;}
+.voice q{font-family:var(--font-serif);font-style:italic;font-weight:400;font-size:21px;line-height:1.42;color:var(--ink);quotes:none;flex:1;}
+.voice .who{display:flex;align-items:center;gap:14px;margin-top:26px;padding-top:20px;border-top:1px solid var(--line);}
+.voice .who .lg{height:26px;max-width:96px;object-fit:contain;object-position:left;}
+.voice .who .lg-text{font-family:var(--font-condensed);font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:17px;color:var(--accent-dk);}
+.voice .who .nm{font-weight:600;font-size:14.5px;color:var(--ink);line-height:1.3;}
+.voice .who .ti{font-size:13px;color:var(--ink-muted);}
+
+/* ==================== 13 · FAQ  ==================== */
+.faq{max-width:840px;margin:48px auto 0;border-top:1px solid var(--line);}
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-q{
+  width:100%;text-align:left;background:none;border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:26px 4px;font-family:var(--font-display);font-weight:700;font-size:clamp(20px,2.2vw,25px);
+  line-height:1.25;letter-spacing:-.01em;color:var(--ink);
+}
+.faq-q .ic{flex:none;width:36px;height:36px;border-radius:var(--r-pill);border:1.5px solid var(--line-strong);display:grid;place-items:center;color:var(--accent);transition:all var(--dur) var(--ease);}
+.faq-q .ic svg{width:17px;height:17px;transition:transform var(--dur) var(--ease);}
+.faq-item.open .faq-q .ic{background:var(--accent);border-color:var(--accent);color:#fff;}
+.faq-item.open .faq-q .ic svg{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height var(--dur) var(--ease);}
+.faq-a-inner{padding:0 60px 28px 4px;font-size:18.5px;line-height:1.58;color:var(--ink-muted);}
+
+/* ==================== 14 · FINAL CTA  ==================== */
+.final-cta{text-align:center;}
+.final-cta .display{max-width:900px;margin:0 auto;}
+.final-cta .sub{margin-top:22px;font-size:21px;color:var(--ink-on-dark);}
+.final-cta .btn{margin-top:34px;}
+.final-cta .microtrust{justify-content:center;margin-top:26px;}
+
+/* ==================== 15 · FORM  ==================== */
+.form-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,5vw,72px);align-items:start;}
+.form-intro .sub{margin-top:20px;font-size:18px;color:var(--ink-muted);line-height:1.6;max-width:420px;}
+.form-intro .reassure{margin-top:28px;display:flex;flex-direction:column;gap:14px;}
+.form-intro .reassure div{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;color:var(--ink-muted);}
+.form-intro .reassure .mark{flex:none;width:22px;height:22px;border-radius:var(--r-pill);background:rgba(26,39,196,.1);color:var(--accent);display:grid;place-items:center;margin-top:1px;}
+.form-intro .reassure .mark svg{width:12px;height:12px;}
+.form-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(26px,3vw,40px);box-shadow:var(--shadow-md);}
+.field{margin-bottom:20px;}
+.field label{display:block;font-weight:600;font-size:14px;color:var(--ink);margin-bottom:8px;}
+.field label .req{color:var(--accent);}
+.field input,.field select,.field textarea{
+  width:100%;font-family:var(--font-text);font-size:16px;color:var(--ink);background:var(--bg);
+  border:1.5px solid var(--line-strong);border-radius:var(--r-sm);padding:13px 15px;
+  transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease);
+}
+.field textarea{resize:vertical;min-height:96px;line-height:1.5;}
+.field select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2352627a' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");background-repeat:no-repeat;background-position:right 15px center;padding-right:42px;cursor:pointer;}
+.field select[data-empty="true"]{color:var(--ink-muted);}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,39,196,.14);}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:#d6455d;box-shadow:0 0 0 3px rgba(214,69,93,.12);}
+.field .err{display:none;color:#d6455d;font-size:13px;margin-top:6px;font-weight:500;}
+.field.invalid .err{display:block;}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-card .btn{width:100%;justify-content:center;margin-top:6px;}
+.secondary-path{text-align:center;margin-top:18px;font-size:14.5px;color:var(--ink-muted);}
+.secondary-path a{color:var(--accent);font-weight:600;cursor:pointer;}
+.secondary-path a:hover{text-decoration:underline;}
+.form-success{display:none;text-align:center;padding:30px 10px;}
+.form-success.show{display:block;}
+.form-success .ok{width:64px;height:64px;border-radius:var(--r-pill);background:rgba(31,157,107,.12);color:var(--check);display:grid;place-items:center;margin:0 auto 20px;}
+.form-success h3{font-family:var(--font-display);font-weight:700;font-size:30px;letter-spacing:-.01em;color:var(--ink);}
+.form-success p{margin-top:12px;color:var(--ink-muted);font-size:17px;}
+
+/* ==================== 16 · FOOTER  ==================== */
+.footer{background:var(--bg-alt);border-top:1px solid var(--line);padding:48px 0;}
+.footer .wrap{display:flex;flex-direction:column;gap:24px;}
+.footer .top{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.footer .rlogo{height:26px;}
+.footer .foot-cta{font-family:var(--font-display);font-weight:700;font-size:22px;color:var(--ink);}
+.footer .legal{font-size:13px;color:var(--ink-muted);line-height:1.6;max-width:760px;}
+.footer .meta{font-size:13px;color:var(--ink-muted);display:flex;gap:18px;flex-wrap:wrap;}
+
+/* ==================== CREATIVE · BRAND DECOR ==================== */
+@font-face{font-family:"Cortado";src:url("fonts/cortado-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+:root{--orange:#e46f2c;--font-script:"Cortado","Brush Script MT",cursive;}
+
+/* brush-script accent for one warm word */
+.script{font-family:var(--font-script);font-style:normal;font-weight:400;color:var(--teal);letter-spacing:.01em;}
+.dark .script{color:var(--highlight);}
+
+/* oversized geometric shapes — recolorable via CSS mask, sit behind content */
+.shape{position:absolute;z-index:0;pointer-events:none;
+  -webkit-mask-repeat:no-repeat;-webkit-mask-size:contain;-webkit-mask-position:center;
+  mask-repeat:no-repeat;mask-size:contain;mask-position:center;}
+.wrap{position:relative;z-index:1;}
+
+/* condensed section kicker — Owners XNarrow, gives sections rhythm + color */
+.kick-label{font-family:var(--font-condensed);font-weight:900;text-transform:uppercase;
+  letter-spacing:.05em;font-size:clamp(15px,1.5vw,19px);color:var(--teal);
+  display:inline-flex;align-items:center;gap:11px;}
+.kick-label::before{content:"";width:32px;height:3px;background:currentColor;border-radius:2px;display:inline-block;}
+.center .kick-label,.kick-label.is-center{justify-content:center;}
+.kick-label.orange{color:var(--orange);}
+.kick-label.accent{color:var(--accent);}
+.kick-wrap{display:flex;justify-content:center;margin-bottom:18px;}
+
+/* HERO — two-column with floating proof cards */
+.hero-inner.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(24px,4vw,56px);align-items:center;}
+.hero-grid h1{font-size:clamp(34px,4.7vw,62px);}
+.hero-grid .kickline{font-size:clamp(26px,3.5vw,46px);}
+.hero-grid .sub{max-width:540px;}
+.hero-cards{position:relative;min-height:500px;}
+.fcard{position:absolute;width:clamp(196px,21vw,238px);border-radius:16px;overflow:hidden;
+  background:#fff;box-shadow:0 26px 56px rgba(0,0,0,.44);}
+.fcard img{width:100%;height:150px;object-fit:cover;display:block;}
+.fcard .fc-meta{padding:12px 15px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.fcard .fc-stat{font-family:var(--font-condensed);font-weight:900;font-size:21px;line-height:.9;color:var(--accent-dk);}
+.fcard .fc-lab{font-family:var(--font-condensed);font-weight:800;text-transform:uppercase;letter-spacing:.07em;font-size:10.5px;color:var(--teal);text-align:right;line-height:1.1;}
+
+/* ARGUMENT cards — colored accent strip + big colored numeral */
+.num-card{position:relative;}
+.num-card .thumb{position:relative;}
+.num-card .thumb::after{content:"";position:absolute;left:0;right:0;top:0;height:6px;z-index:2;}
+.num-card.c1 .thumb::after{background:var(--accent);}
+.num-card.c2 .thumb::after{background:var(--accent);}
+.num-card.c3 .thumb::after{background:var(--accent);}
+.num-card .num{font-size:clamp(66px,7vw,88px);line-height:.74;}
+.num-card.c1 .num{color:var(--accent);}
+.num-card.c2 .num{color:var(--accent);}
+.num-card.c3 .num{color:var(--accent);}
+
+/* PROOF WALL — bigger numbers, color sparks */
+.proof-head{text-align:center;}
+.statgrid{margin-top:40px;}
+.stat .n{font-size:clamp(46px,4.4vw,64px);}
+.stat .n.teal{color:var(--teal);}
+.stat .n.orange{color:var(--orange);}
+
+/* OUR PROCESS */
+.process-intro{max-width:840px;margin:30px auto 0;text-align:center;}
+.process-intro .lead-lines{font-family:var(--font-display);font-weight:700;font-size:clamp(23px,2.5vw,32px);line-height:1.18;letter-spacing:-.01em;color:var(--ink);margin-bottom:18px;}
+.process-intro .lead-lines .em{font-style:italic;font-weight:400;color:var(--accent);}
+.process-intro p.body{font-size:clamp(18px,1.8vw,21px);line-height:1.6;color:var(--ink-muted);}
+.process-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:54px;}
+.pstep{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-lg);padding:30px 32px 34px;box-shadow:var(--shadow-sm);transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease);}
+.pstep:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
+.pstep .pn{font-family:var(--font-condensed);font-weight:900;font-size:42px;line-height:.78;color:var(--accent);}
+.pstep.s1 .pn{color:var(--accent);}
+.pstep.s2 .pn{color:var(--accent);}
+.pstep.s3 .pn{color:var(--accent);}
+.pstep.s4 .pn{color:var(--accent);}
+.pstep h3{font-family:var(--font-display);font-weight:700;font-size:24px;line-height:1.14;letter-spacing:-.01em;margin:16px 0 12px;color:var(--ink);}
+.pstep p{font-size:17.5px;line-height:1.55;color:var(--ink-muted);}
+
+/* WHO WE ARE (about) */
+.about-tiles{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:46px auto;max-width:920px;}
+.about-tile{border:1px solid var(--line-on-dark);border-radius:var(--r-lg);padding:30px 34px;background:rgba(255,255,255,.035);}
+.about-tile .lab{font-family:var(--font-condensed);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:16px;color:var(--teal);margin-bottom:12px;}
+.about-tile .val{font-family:var(--font-display);font-weight:700;font-size:clamp(22px,2.3vw,27px);line-height:1.22;color:#fff;}
+.about-tile .val .script{font-size:1.7em;font-weight:400;}
+.founder-story{max-width:768px;margin:0 auto;}
+.founder-story p{font-size:20.5px;line-height:1.62;color:var(--ink-on-dark);}
+.founder-story p + p{margin-top:18px;}
+.founder-story .standalone{font-family:var(--font-serif);font-style:italic;font-size:clamp(24px,3vw,34px);line-height:1.1;color:var(--highlight);margin:22px 0;}
+.about-close{font-family:var(--font-display);font-weight:900;font-size:clamp(38px,5.4vw,68px);line-height:.96;letter-spacing:-.015em;color:#fff;margin-top:46px;}
+
+@media(max-width:760px){
+  .process-steps,.about-tiles{grid-template-columns:1fr;}
+}
+
+/* REVEAL MOTION ====================
+   Scroll-driven (geometry-based, not clock-based): animates for
+   real users, renders correctly in static capture, and degrades
+   to fully-visible content where view-timeline is unsupported. */
+.reveal{opacity:1;}
+@keyframes rdRise{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:none;}}
+@supports (animation-timeline:view()){
+  @media(prefers-reduced-motion:no-preference){
+    .reveal{animation:rdRise linear both;animation-timeline:view();animation-range:entry 4% entry 42%;}
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .marquee{animation:none;}
+  html{scroll-behavior:auto;}
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media(max-width:980px){
+  .hero-inner.hero-grid{grid-template-columns:1fr;}
+  .hero-cards{display:none;}
+  .hero-grid h1{font-size:clamp(38px,8vw,62px);}
+  .argrid{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto;}
+  .ops-grid{grid-template-columns:1fr;}
+  .ops-portrait{max-width:380px;}
+  .form-grid{grid-template-columns:1fr;}
+  .voices{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto;}
+  .beat-tile{grid-template-columns:1fr;}
+  .beat-tile .pic{min-height:200px;aspect-ratio:16/9;}
+}
+@media(max-width:680px){
+  body{font-size:18px;}
+  .statgrid{grid-template-columns:1fr 1fr;}
+  .announce .msg{display:none;}
+  .hero .cta-row{gap:16px;}
+  .row-2{grid-template-columns:1fr;}
+  .faq-a-inner{padding-right:8px;}
+  .ops-badge{position:static;margin-top:16px;max-width:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ 1 · ANNOUNCEMENT BAR ============ -->
+<div class="announce">
+  <div class="wrap">
+    <div class="left">
+      <img class="rlogo" src="assets/r-logo.svg" alt="Raindrop">
+      <span class="msg">Now partnering with a select number of brands for 2026</span>
+    </div>
+    <span class="talk" data-cta>Talk to Us <span class="arr">&rarr;</span></span>
+  </div>
+</div>
+
+<!-- ============ 2 · HERO ============ -->
+<header class="hero dark" data-screen-label="Hero">
+  <img class="blob" src="assets/blend-drop.svg" alt="" style="top:-50px;right:-70px;width:560px;opacity:.08;">
+  <img class="blob" src="assets/shape1.svg" alt="" style="bottom:120px;left:-30px;width:140px;">
+  <span class="shape" style="width:420px;height:420px;top:40px;right:-30px;background:var(--teal);opacity:.14;-webkit-mask:url(assets/shape4.svg) center/contain no-repeat;mask:url(assets/shape4.svg) center/contain no-repeat;"></span>
+  <div class="wrap hero-inner hero-grid">
+    <div class="hero-left">
+      <div class="eyebrow reveal">The independent agency behind some of CPG's biggest outcomes</div>
+      <h1 class="display lg reveal">P&amp;G's biggest launch in history. A $1.2B exit. 100x revenue in four years.<span class="kickline kicker">Patterns, not flukes.</span></h1>
+      <p class="sub reveal">Raindrop makes work people love. Not as a vibe, as a growth strategy. The brands that hire us don't just win awards, they double awareness, define categories, and get acquired. If you're carrying a number that scares you, let's talk.</p>
+      <div class="cta-row reveal">
+        <button class="btn lg" data-cta>Talk to Us <span class="arr">&rarr;</span></button>
+      </div>
+      <div class="chips reveal">
+        <span class="chip"><b>3</b>&nbsp;Super Bowl ads</span>
+        <span class="chip"><b>#1</b>&nbsp;YouTube TrueView ad of all time</span>
+        <span class="chip"><b>40+</b>&nbsp;ad awards</span>
+      </div>
+    </div>
+    <div class="hero-cards reveal" aria-hidden="true">
+      <div class="fcard" style="top:0;left:6%;transform:rotate(-5deg);">
+        <img src="assets/case-magic-spoon.jpeg" alt="Magic Spoon">
+        <div class="fc-meta"><span class="fc-stat">Magic Spoon</span><span class="fc-lab">DTC</span></div>
+      </div>
+      <div class="fcard" style="top:158px;right:-2%;transform:rotate(4.5deg);">
+        <img src="assets/case-ridge.jpg" alt="Ridge">
+        <div class="fc-meta"><span class="fc-stat">Ridge</span><span class="fc-lab">Retail</span></div>
+      </div>
+      <div class="fcard" style="bottom:0;left:16%;transform:rotate(1.5deg);">
+        <img src="assets/case-dudewipes.jpeg" alt="Dude Wipes">
+        <div class="fc-meta"><span class="fc-stat">Dude Wipes</span><span class="fc-lab">Retail</span></div>
+      </div>
+    </div>
+  </div>
+  <!-- client logo strip -->
+  <div class="logostrip">
+    <div class="label">Trusted by category-defining brands</div>
+    <div class="marquee">
+      <img src="assets/logo-gruns.png" alt="Grüns">
+      <img src="assets/logo-spruce.jpg" alt="Spruce">
+      <img src="assets/logo-native.png" alt="Native">
+      <img src="assets/logo-squatch.png" alt="Dr. Squatch">
+      <img src="assets/logo-sprouts.png" alt="Sprouts">
+      <img src="assets/logo-dudewipes.jpg" alt="Dude Wipes">
+      <img src="assets/logo-laundry-sauce.jpg" alt="Laundry Sauce">
+      <img src="assets/logo-pourri.jpg" alt="Pourri">
+      <!-- duplicate set for seamless marquee -->
+      <img src="assets/logo-gruns.png" alt="">
+      <img src="assets/logo-spruce.jpg" alt="">
+      <img src="assets/logo-native.png" alt="">
+      <img src="assets/logo-squatch.png" alt="">
+      <img src="assets/logo-sprouts.png" alt="">
+      <img src="assets/logo-dudewipes.jpg" alt="">
+      <img src="assets/logo-laundry-sauce.jpg" alt="">
+      <img src="assets/logo-pourri.jpg" alt="">
+    </div>
+  </div>
+</header>
+
+<!-- ============ 3 · VIDEO ============ -->
+<section class="section center" data-screen-label="Video">
+  <div class="wrap">
+    <div class="eyebrow reveal">Watch this first</div>
+    <h2 class="display reveal" style="margin-top:14px;">Two minutes of the work</h2>
+    <p class="lede measure reveal" style="margin-top:20px;">Super Bowl spots. Bobsleds. A bear the internet adopted. A man who is not a dish. Watch it the way your customers will, then imagine it pointed at your category.</p>
+    <div class="video-frame reveal" id="sizzle" style="margin-top:42px;" role="button" tabindex="0" aria-label="Play the Raindrop sizzle reel">
+      <img src="assets/case-levate.jpg" alt="Raindrop work — L'Evate You with Steve Harvey">
+      <div class="scrim">
+        <div class="play"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="video-cap">The Reel · 2026</div>
+    </div>
+    <div class="reveal" style="margin-top:34px;">
+      <button class="btn" data-cta>Talk to Us <span class="arr">&rarr;</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 · THE REALITY ============ -->
+<section class="section alt" data-screen-label="The Reality">
+  <div class="wrap measure reality center">
+    <h2 class="display reveal">Efficiency keeps you in the game. <span class="ital">Ideas change the score.</span></h2>
+    <div style="text-align:left;">
+      <p class="reveal">You're being asked to do two opposite things at once: build long-term brand value and prove short-term impact, every quarter, with AI breathing down the budget. So every team optimizes. Same dashboards, same stack, same playbook as the brand one shelf over.</p>
+      <p class="reveal">Efficiency is table stakes now. And table stakes have never once moved a market.</p>
+      <p class="reveal">Look at any brand that actually broke away in the last decade. Awareness doubled. Categories redefined. Acquirers calling. Every one of them got there on the back of an idea people loved. <span class="ital" style="font-family:var(--font-serif);color:var(--ink);"><span class="underline-hl">The dashboards just kept score.</span></span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5 · THE ARGUMENT ============ -->
+<section class="section" data-screen-label="The Argument">
+  <span class="shape" style="width:300px;height:300px;top:64px;left:-90px;background:var(--orange);opacity:.09;-webkit-mask:url(assets/shape2.svg) center/contain no-repeat;mask:url(assets/shape2.svg) center/contain no-repeat;"></span>
+  <span class="shape" style="width:240px;height:240px;bottom:90px;right:-66px;background:var(--teal);opacity:.11;-webkit-mask:url(assets/shape5.svg) center/contain no-repeat;mask:url(assets/shape5.svg) center/contain no-repeat;"></span>
+  <div class="wrap">
+    <div class="kick-wrap reveal"><span class="kick-label accent">The Argument</span></div>
+    <h2 class="display measure center reveal">Big ideas aren't a luxury. <span class="ital">They're the only thing that's ever moved a market.</span></h2>
+    <div class="argrid">
+      <a class="num-card c1 reveal" href="https://raindrop.agency/contact/">
+        <div class="thumb"><img src="assets/case-gruns.jpeg" alt="Grüns — a vitamin gummy bear"></div>
+        <div class="body">
+          <div class="num">01</div>
+          <h3>A vitamin became a character the internet adopted.</h3>
+          <p>Grüns made daily nutrition beary fun. Thirty-six months after launch, Unilever wrote a $1.2 billion check for the brand we helped build.</p>
+          <span class="more link-cta">See the case study <span class="arr">&rarr;</span></span>
+        </div>
+      </a>
+      <a class="num-card c2 reveal" href="https://raindrop.agency/contact/">
+        <div class="thumb"><img src="assets/case-native-slider.jpeg" alt="Native — deodorant campaign"></div>
+        <div class="body">
+          <div class="num">02</div>
+          <h3>A deodorant brand went mythological.</h3>
+          <p>Bobsleds. Mt. Olympus. Native's campaigns made "clean" feel like the fun choice instead of the compromise, on its way to becoming the fastest-growing personal care brand in America.</p>
+          <span class="more link-cta">See the case study <span class="arr">&rarr;</span></span>
+        </div>
+      </a>
+      <a class="num-card c3 reveal" href="https://raindrop.agency/contact/">
+        <div class="thumb"><img src="assets/case-squatch.jpg" alt="Dr. Squatch — Super Bowl spot"></div>
+        <div class="body">
+          <div class="num">03</div>
+          <h3>A soap company became a Super Bowl franchise.</h3>
+          <p>"You're not a dish. You're a man." took Dr. Squatch from DTC upstart to household name, and one Super Bowl spot took national awareness from 12% to 24%.</p>
+          <span class="more link-cta">See the case study <span class="arr">&rarr;</span></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 · THE PROOF WALL ============ -->
+<section class="section dark" data-screen-label="Proof Wall">
+  <span class="shape" style="width:380px;height:380px;top:-50px;left:-90px;background:#fff;opacity:.04;-webkit-mask:url(assets/shape3.svg) center/contain no-repeat;mask:url(assets/shape3.svg) center/contain no-repeat;"></span>
+  <span class="shape" style="width:300px;height:300px;bottom:-30px;right:-70px;background:var(--teal);opacity:.13;-webkit-mask:url(assets/shape4.svg) center/contain no-repeat;mask:url(assets/shape4.svg) center/contain no-repeat;"></span>
+  <div class="wrap">
+    <div class="kick-wrap reveal"><span class="kick-label">The Proof</span></div>
+    <h2 class="display measure center reveal">Play-it-safe creative <span class="ital">never 100x'd anything.</span></h2>
+    <div class="statgrid">
+      <div class="stat reveal"><div class="n">$1.2B</div><div class="d">client exit — Grüns, acquired by Unilever</div></div>
+      <div class="stat reveal"><div class="n">#1</div><div class="d">P&amp;G's biggest brand launch in history (Spruce)</div></div>
+      <div class="stat reveal"><div class="n">100x</div><div class="d">client revenue growth in 4 years</div></div>
+      <div class="stat reveal"><div class="n">12&rarr;24%</div><div class="d">national awareness, one Super Bowl spot</div></div>
+      <div class="stat reveal"><div class="n">592%</div><div class="d">YoY revenue growth, Bones Coffee</div></div>
+      <div class="stat reveal"><div class="n">#1</div><div class="d">YouTube TrueView ad of all time</div></div>
+      <div class="stat reveal"><div class="n">Fastest</div><div class="d">growing personal care brand in America (Native)</div></div>
+      <div class="stat reveal"><div class="n">3</div><div class="d">Super Bowl campaigns</div></div>
+    </div>
+    <p class="candor reveal">Every number on this wall is a specific client outcome. Not an average, not a promise. Results this size are rare by definition. <span class="ital">That's rather the point.</span></p>
+    <div class="proof-cta reveal"><button class="btn white" data-cta>Talk to Us <span class="arr">&rarr;</span></button></div>
+  </div>
+</section>
+
+<!-- ============ 7 · OUR PROCESS ============ -->
+<section class="section" data-screen-label="Our Process">
+  <span class="shape" style="width:280px;height:280px;bottom:60px;left:-80px;background:var(--teal);opacity:.09;-webkit-mask:url(assets/shape5.svg) center/contain no-repeat;mask:url(assets/shape5.svg) center/contain no-repeat;"></span>
+  <div class="wrap">
+    <div class="kick-wrap reveal"><span class="kick-label orange">Our Process</span></div>
+    <h2 class="display measure center reveal">Most brands lose because they are more interested in what they want to say, <span class="ital">than what people want to hear.</span></h2>
+    <div class="process-intro reveal">
+      <p class="lead-lines">There has never been a better time in history to listen to consumers. <span class="em">We listen to their why. So, you can win.</span></p>
+      <p class="body">Great work happens when you close the gap between what a brand wants to say and what people want to hear.</p>
+    </div>
+    <div class="process-steps">
+      <div class="pstep s1 reveal"><div class="pn">01</div><h3>Deep Consumer Listening</h3><p>We use a holistic stack of tools, from talking to your customer to using a custom AI stack that analyzes cultural conversations in real-time to reveal what your customers are actually feeling, not just what they are clicking.</p></div>
+      <div class="pstep s2 reveal"><div class="pn">02</div><h3>Strategic Insights Focused Around Their &ldquo;Why&rdquo;</h3><p>Data is noise until you find the human heartbeat within it. We translate those listening signals into a precise strategic core that speaks directly to the emotional why behind every purchase decision.</p></div>
+      <div class="pstep s3 reveal"><div class="pn">03</div><h3>Big Ideas For Everywhere</h3><p>We develop bold creative ideas that are impossible to ignore &mdash; big enough to anchor a Super Bowl spot, but flexible enough to dominate the algorithm. And everything in between.</p></div>
+      <div class="pstep s4 reveal"><div class="pn">04</div><h3>Integrated Production</h3><p>We unify creative and production from day one, in order to deliver Hollywood-level craft and 360 campaigns with assets across every piece of your media plan.</p></div>
+    </div>
+    <div class="center pattern-cta reveal" style="margin-top:42px;"><span class="link-cta" data-cta>Talk to Us <span class="arr">&rarr;</span></span></div>
+  </div>
+</section>
+
+<!-- ============ 8 · MEET THE OPERATORS ============ -->
+<section class="section alt" data-screen-label="Meet the Operators">
+  <div class="wrap ops-grid">
+    <div class="ops-portrait reveal">
+      <img class="ops-photo" src="assets/founder-jacques.webp" alt="Jacques Spitzer, Founder &amp; CEO of Raindrop, speaking on stage" loading="lazy">
+      <div class="ops-badge">
+        <div class="bn">3×</div>
+        <div class="bd">Super Bowl campaigns · 40+ ad awards</div>
+      </div>
+    </div>
+    <div class="ops-copy">
+      <div class="reveal" style="margin-bottom:16px;"><span class="kick-label orange">Meet the Operators</span></div>
+      <h2 class="display reveal" style="margin-bottom:26px;"><span class="script" style="font-size:1.18em;">Joy</span>, it turns out, <span class="ital">is a growth strategy.</span></h2>
+      <p class="reveal">Raindrop is run by entrepreneurs, not account men. We've built and operated brands with our own money on the line, and that changes how you sit in a room. We know what a CFO needs to see, what a board punishes, and what a customer actually remembers.</p>
+      <p class="reveal">We also believe the most commercially dangerous thing a brand can be is forgettable. So we amplify the joyful energy of brands too ambitious to play it safe, and we keep strategy, creative, and production under one roof so the idea survives the journey from the room where it's sold to the shelf where it wins.</p>
+      <div class="pullquote reveal">
+        <q>The work has to do two jobs: make your customer care and make your CEO confident. We don't ship it until it does both.</q>
+        <span class="attr">— Jacques Spitzer, CEO &amp; CCO, Raindrop</span>
+      </div>
+      <div class="award-strip reveal">
+        <span class="award">Super Bowl</span>
+        <span class="award">Telly Awards</span>
+        <span class="award">40+ Ad Awards</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT · WHO WE ARE ============ -->
+<section class="section dark" data-screen-label="Who We Are">
+  <img class="blob" src="assets/blend-drop.svg" alt="" style="position:absolute;top:-40px;right:-60px;width:440px;opacity:.06;filter:brightness(0) invert(1);pointer-events:none;">
+  <span class="shape" style="width:300px;height:300px;bottom:-30px;left:-80px;background:var(--teal);opacity:.12;-webkit-mask:url(assets/shape4.svg) center/contain no-repeat;mask:url(assets/shape4.svg) center/contain no-repeat;"></span>
+  <div class="wrap">
+    <div class="kick-wrap reveal"><span class="kick-label">Who We Are</span></div>
+    <h2 class="display measure center reveal">Raindrop is an independent agency where good people and giant results <span class="ital">go hand in hand.</span></h2>
+    <p class="lede measure center reveal" style="margin:24px auto 0;">We define categories for the boldest brands in the world. By putting human connection at the center of the work, we unlock the power to win. And, let&rsquo;s be real, winning is more fun with friends.</p>
+    <div class="about-tiles reveal">
+      <div class="about-tile"><div class="lab">Our Mission</div><div class="val">To be the best agency in the world to work for and work with.</div></div>
+      <div class="about-tile"><div class="lab">Our Guiding Principle</div><div class="val"><span class="script">Friendship.</span></div></div>
+    </div>
+    <div class="founder-story reveal">
+      <p>The name Raindrop comes from a quote about Friendship. Not about money (although we do love a good &lsquo;Make it Rain!&rsquo; dance).</p>
+      <p>Our Founder, Jacques Spitzer, believed if he could combine friendship, a strong desire to win, and creativity, then he and those around him would flourish.</p>
+      <p class="standalone">He was right.</p>
+      <p>Jacques started as an advertising outsider and built an agency that developed some of the most recognizable work of the last decade. We can guarantee that you have products in your home from brands that we helped win.</p>
+      <p>After 15 years in the game, where others have lost their vision and their way, we still put the values of friendship, a desire to win and creativity front and center in everything we do.</p>
+      <p>Today, Raindrop is one of the leading independent agencies for challenger brands and legacy brands looking to find a new spark.</p>
+    </div>
+    <div class="center reveal">
+      <div class="about-close">Are you next?</div>
+      <div style="margin-top:26px;"><button class="btn white lg" data-cta>Talk to Us <span class="arr">&rarr;</span></button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9 · THINKING LIKE THE OWNER ============ -->
+<section class="section" data-screen-label="Measure Like Your CEO">
+  <div class="wrap measure">
+    <h2 class="display center reveal">We measure work <span class="ital">the way your CEO does.</span></h2>
+    <p class="lede reveal" style="margin-top:24px;">We don't run your media, so we're not here to grade our own homework with a dashboard. We just think like the people who own the number. Every idea is built to do two jobs at once: build the brand your long-term value depends on, and drive the results this quarter gets judged on. That's the whole brief: work your CEO can believe in and your customer can't ignore.</p>
+    <ul class="checklist reveal">
+      <li><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Ideas judged on business outcomes — awareness, share, sales — never vanity metrics</li>
+      <li><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Scope discipline procurement can audit, with pricing that shows its work</li>
+    </ul>
+    <div class="callout reveal">
+      <img class="blob" src="assets/blend-drop.svg" alt="">
+      <div class="eyebrow">Approved vendor status</div>
+      <div class="ct">We're already approved vendors for P&amp;G, Unilever, Mars, Reckitt, and Conagra. <span class="ital">If you're at one of these companies, let's talk.</span></div>
+      <div class="vendor-logos">
+        <span>P&amp;G</span><span>Unilever</span><span>Mars</span><span>Reckitt</span><span>Conagra</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 · WHO WE'RE BUILT FOR ============ -->
+<section class="section alt" data-screen-label="Who We're Built For">
+  <div class="wrap measure">
+    <h2 class="display center reveal">Built for brands with a big number to hit.</h2>
+    <ul class="who-list reveal">
+      <li><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>You run a holding-company brand and you're done with holding-company agencies — the layers, the rituals, the junior swap.</li>
+      <li><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>You're one of the best startups in the world: well-funded, impatient, and built to move faster than your category.</li>
+      <li><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>You're at $50M+ with a plan that says $500M+, and you know optimization alone won't get you there.</li>
+    </ul>
+    <div class="notfor reveal"><b style="color:var(--ink);font-weight:700;">Not for:</b> brands shopping for a logo-and-asset vending machine. There are good shops for that. This isn't one.</div>
+  </div>
+</section>
+
+<!-- ============ 11 · THE MANIFESTO ============ -->
+<section class="section dark" data-screen-label="Manifesto">
+  <div class="wrap measure">
+    <div class="eyebrow center reveal">The standard</div>
+    <h2 class="display center reveal" style="margin-top:14px;">A few things we'll <span class="ital">never</span> do.</h2>
+    <ul class="manifesto-list">
+      <li class="reveal"><span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span>Ship work designed to blend in. Forgettable is the most expensive thing a brand can be.</span></li>
+      <li class="reveal"><span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span>Make work that wins the meeting and loses the market. Internal applause doesn't show up in sales.</span></li>
+      <li class="reveal"><span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span>Pitch ten okay ideas hoping one sticks. You get the few we'd bet our name on.</span></li>
+      <li class="reveal"><span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span>Sell you an idea too small to travel. A real platform anchors a Super Bowl spot and still stops a thumb.</span></li>
+      <li class="reveal"><span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span>Present an idea we can't show you. You'll see the thing — frames, film, finished craft — not a description of it.</span></li>
+    </ul>
+    <div class="center manifesto-cta reveal"><button class="btn white" data-cta>Talk to Us <span class="arr">&rarr;</span></button></div>
+  </div>
+</section>
+
+<!-- ============ 12 · CLIENT VOICES ============ -->
+<section class="section" data-screen-label="Client Voices">
+  <span class="shape" style="width:260px;height:260px;top:50px;right:-70px;background:var(--orange);opacity:.08;-webkit-mask:url(assets/shape2.svg) center/contain no-repeat;mask:url(assets/shape2.svg) center/contain no-repeat;"></span>
+  <div class="wrap">
+    <div class="kick-wrap reveal"><span class="kick-label">Client Voices</span></div>
+    <h2 class="display center measure reveal">The people who've sat where you're sitting.</h2>
+    <div class="voices">
+      <div class="voice reveal">
+        <div class="mark-q">&ldquo;</div>
+        <q>The team embodies the highest levels of discipline in keeping business fundamentals and key objectives as guiding posts, while also pushing brand teams to think beyond the expected.</q>
+        <div class="who">
+          <img class="lg" src="assets/logo-native.png" alt="Native">
+          <div><div class="nm">Janelle Wichmann</div><div class="ti">CMO, Native</div></div>
+        </div>
+      </div>
+      <div class="voice reveal">
+        <div class="mark-q">&ldquo;</div>
+        <q>Highly recommend any brand, if given the chance to work with Raindrop, take that opportunity. Great partners since the beginning!</q>
+        <div class="who">
+          <img class="lg" src="assets/logo-gruns.png" alt="Grüns">
+          <div><div class="nm">Chad Janis</div><div class="ti">Founder &amp; CEO, Grüns</div></div>
+        </div>
+      </div>
+      <div class="voice reveal">
+        <div class="mark-q">&ldquo;</div>
+        <q>Working with Raindrop has been the highlight of my year.</q>
+        <div class="who">
+          <span class="lg-text">Worx</span>
+          <div><div class="nm">Bragg Swain</div><div class="ti">VP of Marketing, Positec (Worx)</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 13 · FAQ ============ -->
+<section class="section alt" data-screen-label="FAQ">
+  <div class="wrap">
+    <h2 class="display center measure reveal">Questions a careful buyer asks.</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Who actually works on our business?<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">The people you meet. Strategy, creative, and production leads under one roof, on your business from first call to final delivery. Fewer handoffs is the whole model.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How do you price?<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Scoped, transparent, disciplined. You'll know what you're buying, what it costs, and where the edges are. Procurement teams tend to like us. We show our work.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How fast can we be in market?<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Faster than you've been told is possible without losing craft. Strategy, creative, and production under one roof removes the handoffs that eat calendars. Bring us a date and we'll tell you honestly what it takes.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do you work with in-house teams?<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Constantly. Most enterprise brands are hybrid now. We slot in where you need firepower and make your internal team stronger, not threatened.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can you operate inside enterprise vendor and compliance systems?<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Yes. We're already approved vendors for P&amp;G, Unilever, Mars, Reckitt, and Conagra, and we work inside those systems today. If you're at one of these companies, the paperwork is already done. Let's talk.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">We're running an RFP.<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Send it. Your scoring matrix gets a clean, evidenced case from us, and if we're not the right fit for the brief, we'll say so. Your consultant has a job to do; we make it easier, not louder.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 14 · FINAL CTA ============ -->
+<section class="section dark final-cta" data-screen-label="Final CTA">
+  <div class="wrap">
+    <h2 class="display reveal">If the next number on your roadmap is a big one, bring it to people who've <span class="ital">hit big numbers before.</span></h2>
+    <p class="sub reveal">One conversation. Useful even if we never work together.</p>
+    <div class="reveal"><button class="btn white lg" data-cta>Talk to Us <span class="arr">&rarr;</span></button></div>
+    <div class="microtrust reveal">
+      <span>Response within one business day</span><span>Straight answers</span><span>No 40-slide theater</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 16 · FOOTER ============ -->
+<footer class="footer" data-screen-label="Footer">
+  <div class="wrap">
+    <div class="top">
+      <img class="rlogo" src="assets/r-logo-indigo.svg" alt="Raindrop">
+      <div class="foot-cta">Ideas people love.</div>
+      <span class="link-cta" data-cta>Talk to Us <span class="arr">&rarr;</span></span>
+    </div>
+    <p class="legal">Figures sourced from published Raindrop case studies (raindrop.agency) and public reporting (Grüns–Unilever acquisition, April 2026). Grüns referenced as the brand we helped launch and scale, not causal credit for the acquisition itself.</p>
+    <div class="meta">
+      <span>© 2026 Raindrop. An independent creative &amp; marketing agency.</span>
+      <span>Privacy</span>
+      <span>Terms</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---- Contact routing — every CTA opens the site's Contact page ---- */
+  var CONTACT = "https://raindrop.agency/contact/";
+  document.querySelectorAll("[data-cta]").forEach(function(el){
+    el.style.cursor = "pointer";
+    el.addEventListener("click", function(){ window.location.href = CONTACT; });
+  });
+
+  /* ---- sizzle reel placeholder ---- */
+  var sizzle = document.getElementById("sizzle");
+  if(sizzle){
+    var playReel = function(){
+      console.log("[Raindrop] Sizzle reel requested → https://raindrop.agency/wp-content/uploads/2026/03/2026_RD_Sizzle_30mb.mov (lazy embed placeholder)");
+    };
+    sizzle.addEventListener("click", playReel);
+    sizzle.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); playReel(); }});
+  }
+
+  /* ---- FAQ accordion ---- */
+  document.querySelectorAll(".faq-item").forEach(function(item){
+    var q = item.querySelector(".faq-q");
+    var a = item.querySelector(".faq-a");
+    q.addEventListener("click", function(){
+      var isOpen = item.classList.contains("open");
+      document.querySelectorAll(".faq-item.open").forEach(function(o){
+        o.classList.remove("open"); o.querySelector(".faq-a").style.maxHeight = null;
+      });
+      if(!isOpen){ item.classList.add("open"); a.style.maxHeight = a.scrollHeight + "px"; }
+    });
+  });
+})();
+</script>
+</body>
+</html>
