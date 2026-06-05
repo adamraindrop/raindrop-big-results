@@ -211,8 +211,11 @@ a{color:inherit;text-decoration:none;}
   position:relative;aspect-ratio:16/9;border-radius:var(--r-lg);overflow:hidden;
   box-shadow:var(--shadow-lg);background:#000;max-width:920px;margin:0 auto;cursor:pointer;
 }
-.video-frame img{width:100%;height:100%;object-fit:cover;}
-.video-frame .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,19,119,.12),rgba(10,19,119,.42));display:grid;place-items:center;}
+.video-frame img,.video-frame video{width:100%;height:100%;object-fit:cover;display:block;background:#000;}
+.video-frame .scrim{position:absolute;inset:0;width:100%;border:none;padding:0;cursor:pointer;background:linear-gradient(180deg,rgba(10,19,119,.12),rgba(10,19,119,.42));display:grid;place-items:center;transition:opacity var(--dur) var(--ease),visibility var(--dur) var(--ease);}
+.video-frame .scrim.hide{opacity:0;visibility:hidden;}
+.video-frame.playing{cursor:default;}
+.video-frame.playing .video-cap{opacity:0;}
 .play{
   width:88px;height:88px;border-radius:var(--r-pill);background:rgba(255,255,255,.95);
   display:grid;place-items:center;color:var(--accent-dk);box-shadow:var(--shadow-md);
@@ -625,12 +628,14 @@ a{color:inherit;text-decoration:none;}
     <div class="eyebrow reveal">Watch this first</div>
     <h2 class="display reveal" style="margin-top:14px;">Two minutes of the work</h2>
     <p class="lede measure reveal" style="margin-top:20px;">Super Bowl spots. Bobsleds. A bear the internet adopted. A man who is not a dish. Watch it the way your customers will, then imagine it pointed at your category.</p>
-    <div class="video-frame reveal" id="sizzle" style="margin-top:42px;" role="button" tabindex="0" aria-label="Play the Raindrop sizzle reel">
-      <img src="assets/case-levate.jpg" alt="Raindrop work — L'Evate You with Steve Harvey">
-      <div class="scrim">
-        <div class="play"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-      </div>
-      <div class="video-cap">The Reel · 2026</div>
+    <div class="video-frame reveal" id="sizzle" style="margin-top:42px;">
+      <video id="sizzle-video" poster="assets/case-levate.jpg" preload="metadata" playsinline controlslist="nodownload" aria-label="Raindrop sizzle reel">
+        <source src="assets/2026_RD_Sizzle.mp4" type="video/mp4">
+      </video>
+      <button class="scrim" id="sizzle-overlay" type="button" aria-label="Play the Raindrop sizzle reel">
+        <span class="play"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+      </button>
+      <div class="video-cap" id="sizzle-cap">The Reel · 2026</div>
     </div>
     <div class="reveal" style="margin-top:34px;">
       <button class="btn" data-cta>Talk to Us <span class="arr">&rarr;</span></button>
@@ -943,14 +948,14 @@ a{color:inherit;text-decoration:none;}
     el.addEventListener("click", function(){ window.location.href = CONTACT; });
   });
 
-  /* ---- sizzle reel placeholder ---- */
-  var sizzle = document.getElementById("sizzle");
-  if(sizzle){
-    var playReel = function(){
-      console.log("[Raindrop] Sizzle reel requested → https://raindrop.agency/wp-content/uploads/2026/03/2026_RD_Sizzle_30mb.mov (lazy embed placeholder)");
-    };
-    sizzle.addEventListener("click", playReel);
-    sizzle.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); playReel(); }});
+  /* ---- sizzle reel ---- */
+  var frame = document.getElementById("sizzle");
+  var video = document.getElementById("sizzle-video");
+  var overlay = document.getElementById("sizzle-overlay");
+  if(frame && video && overlay){
+    overlay.addEventListener("click", function(){ overlay.classList.add("hide"); frame.classList.add("playing"); video.controls = true; video.play(); });
+    video.addEventListener("play", function(){ overlay.classList.add("hide"); frame.classList.add("playing"); video.controls = true; });
+    video.addEventListener("ended", function(){ overlay.classList.remove("hide"); frame.classList.remove("playing"); video.controls = false; });
   }
 
   /* ---- FAQ accordion ---- */
