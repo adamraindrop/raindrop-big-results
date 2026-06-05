@@ -456,6 +456,7 @@ a{color:inherit;text-decoration:none;}
 .fcard .fc-meta{padding:12px 15px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
 .fcard .fc-stat{font-family:var(--font-condensed);font-weight:900;font-size:21px;line-height:.9;color:var(--accent-dk);}
 .fcard .fc-lab{font-family:var(--font-condensed);font-weight:800;text-transform:uppercase;letter-spacing:.07em;font-size:10.5px;color:var(--teal);text-align:right;line-height:1.1;}
+.fcard.mobile-card{display:none;} /* shown only in the mobile hero strip */
 
 /* ARGUMENT cards — colored accent strip + big colored numeral */
 .num-card{position:relative;}
@@ -536,7 +537,7 @@ a{color:inherit;text-decoration:none;}
   }
   .hero-cards::-webkit-scrollbar{display:none;}
   .hero-cards .fcard{
-    position:static !important;transform:none !important;inset:auto !important;
+    display:block;position:static !important;transform:none !important;inset:auto !important;
     flex:0 0 auto;width:208px;scroll-snap-align:start;
   }
   .hero-grid h1{font-size:clamp(38px,8vw,62px);}
@@ -592,17 +593,37 @@ a{color:inherit;text-decoration:none;}
       </div>
     </div>
     <div class="hero-cards reveal" aria-hidden="true">
+      <div class="fcard mobile-card">
+        <img src="assets/card-gruns.jpg" alt="Grüns" loading="lazy">
+        <div class="fc-meta"><span class="fc-stat">Grüns</span><span class="fc-lab">DTC</span></div>
+      </div>
       <div class="fcard" style="top:0;left:6%;transform:rotate(-5deg);">
         <img src="assets/case-magic-spoon.jpeg" alt="Magic Spoon">
         <div class="fc-meta"><span class="fc-stat">Magic Spoon</span><span class="fc-lab">DTC</span></div>
+      </div>
+      <div class="fcard mobile-card">
+        <img src="assets/card-hellopanda.jpg" alt="Hello Panda" loading="lazy">
+        <div class="fc-meta"><span class="fc-stat">Hello Panda</span><span class="fc-lab">CPG</span></div>
       </div>
       <div class="fcard" style="top:158px;right:-2%;transform:rotate(4.5deg);">
         <img src="assets/case-ridge.jpg" alt="Ridge">
         <div class="fc-meta"><span class="fc-stat">Ridge</span><span class="fc-lab">Retail</span></div>
       </div>
+      <div class="fcard mobile-card">
+        <img src="assets/card-sprouts.jpg" alt="Sprouts" loading="lazy">
+        <div class="fc-meta"><span class="fc-stat">Sprouts</span><span class="fc-lab">Retail</span></div>
+      </div>
       <div class="fcard" style="bottom:0;left:16%;transform:rotate(1.5deg);">
         <img src="assets/case-dudewipes.jpeg" alt="Dude Wipes">
         <div class="fc-meta"><span class="fc-stat">Dude Wipes</span><span class="fc-lab">Retail</span></div>
+      </div>
+      <div class="fcard mobile-card">
+        <img src="assets/card-weber.jpg" alt="Weber" loading="lazy">
+        <div class="fc-meta"><span class="fc-stat">Weber</span><span class="fc-lab">Retail</span></div>
+      </div>
+      <div class="fcard mobile-card">
+        <img src="assets/card-laundrysauce.jpg" alt="Laundry Sauce" loading="lazy">
+        <div class="fc-meta"><span class="fc-stat">Laundry Sauce</span><span class="fc-lab">DTC</span></div>
       </div>
     </div>
   </div>
